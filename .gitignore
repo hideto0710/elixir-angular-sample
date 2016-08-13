@@ -25,3 +25,10 @@ erl_crash.dump
 
 .idea
 *.iml
+
+npm-debug.log
+
+/coverage/
+.DS_Store
+/dist/
+/typings/

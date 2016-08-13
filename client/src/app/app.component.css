@@ -5,3 +5,11 @@ main {
   margin-top: 50px;
   display: block;
 }
+
+a {
+  cursor: pointer;
+}
+
+li {
+  text-align: left;
+}

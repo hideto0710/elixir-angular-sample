@@ -1,21 +1,13 @@
+<script>
+  window.IssuesGlobal = <%= {:safe, JSEX.encode!(@issues)} %>
+</script>
+
 <div class="jumbotron">
   <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
   <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
 </div>
 
 <div class="row marketing">
-  <div>
-    <h4>Issues</h4>
-    <ul>
-      <%= for issue <- @issues do %>
-      <li id="<%= issue[:id] %>">
-        <a href="<%= issue[:html_url] %>" target="_blank">
-          <%= issue[:title] %>
-        </a>
-      </li>
-      <% end %>
-    </ul>
-  </div>
   <my-app>Loading...</my-app>
   <div>
     <h4>Messages</h4>

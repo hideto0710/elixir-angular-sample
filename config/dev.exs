@@ -39,5 +39,6 @@ config :friday_front, FridayFront.Repo,
   username: "postgres",
   password: "postgres",
   database: "friday_front_dev",
-  hostname: "localhost",
+  hostname: "0.0.0.0",
+  port: 5442,
   pool_size: 10

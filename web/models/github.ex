@@ -3,10 +3,8 @@ defmodule FridayFront.Github do
 
   def issues do
     base_url = "https://api.github.com"
-    token = ""
-    headers = [{"Authorization", "token #{token}"}]
     HTTPoison.start
-    HTTPoison.get!(base_url <> "/repos/Atrae/wevox/issues", headers).body
+    HTTPoison.get!(base_url <> "/repos/hideto0710/elixir-angular-sample/issues").body
     |> Poison.decode!
     |> Enum.map(&parse_response(&1, Constants.issues_fields))
   end

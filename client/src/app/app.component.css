@@ -12,4 +12,19 @@ a {
 
 li {
   text-align: left;
+  position: relative;
+}
+
+li > a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: -16px;
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid #555;
+  border-bottom: 1px solid #555;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }

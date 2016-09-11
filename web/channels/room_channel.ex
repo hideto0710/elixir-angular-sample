@@ -1,10 +1,10 @@
 defmodule FridayFront.RoomChannel do
   use Phoenix.Channel
 
-  def join("room:lobby", auth_msg, socket) do
+  def join("room:lobby", _auth_msg, socket) do
     {:ok, socket}
   end
-  def join("room:" <> _private_room_id, _auth_msg, socket) do
+  def join("room:" <> _private_room_id, _auth_msg, _socket) do
     {:error, %{reason: "unauthorized"}}
   end
 

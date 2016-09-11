@@ -9,6 +9,6 @@ defmodule FridayFront.PageController do
   end
 
   defp camelize_keys(list) do
-    Enum.map(list, fn({k, v}) -> {Inflex.camelize(k, :lower), v}end)
+    Enum.map(list, fn ({k, v}) -> {Inflex.camelize(k, :lower), v} end)
   end
 end

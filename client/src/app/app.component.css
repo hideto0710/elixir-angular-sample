@@ -28,3 +28,11 @@ li > a:before {
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
+h2 {
+  text-align: left;
+}
+
+div.input_area {
+  text-align: right;
+}

@@ -1,11 +1,28 @@
 <main>
-    <h1>Hello from Angular 2 App with Webpack</h1>
-    <img src="angular.png">
-    <ul>
-        <li *ngFor="let stack of stacks">
-            <a href="{{stack.htmlUrl}}" target="_blank">
-                {{ stack.title }}
-            </a>
-        </li>
-    </ul>
+  <h1>Angular 2</h1>
+  <img src="angular.png">
+
+  <h2>Issues</h2>
+  <ul>
+    <li *ngFor="let stack of stacks">
+      <a href="{{stack.htmlUrl}}" target="_blank">
+        {{ stack.title }}
+      </a>
+    </li>
+  </ul>
+  <div class="input_area">
+    <label>issue: </label>
+    <input (keyup.enter)="onIssueInputEnter($event)" [(ngModel)]="issueText" placeholder="issue number">
+  </div>
+
+  <h2>Messages</h2>
+  <ul>
+    <li *ngFor="let message of messages">
+      {{ message }}
+    </li>
+  </ul>
+  <div class="input_area">
+    <label>messages: </label>
+    <input (keyup.enter)="onMessageInputEnter($event)" [(ngModel)]="messageText" placeholder="message">
+  </div>
 </main>

@@ -1,4 +1,4 @@
-defmodule FridayFront.IssueTracker.Supurvisor do
+defmodule FridayFront.IssueTracker.Supervisor do
   use Supervisor
   require Logger
   alias FridayFront.IssueTracker

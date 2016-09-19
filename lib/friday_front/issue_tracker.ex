@@ -11,7 +11,7 @@ defmodule FridayFront.IssueTracker do
 
   def start_workers(sup) do
     {:ok, stash} = Supervisor.start_child(sup, worker(IssueTracker.Stash, []))
-    Supervisor.start_child(sup, supervisor(IssueTracker.Supurvisor, [stash]))
+    Supervisor.start_child(sup, supervisor(IssueTracker.Supervisor, [stash]))
   end
 
   def init(_) do

@@ -1,9 +1,12 @@
 defmodule FridayFront.Github do
   alias FridayFront.GithubConstants, as: Constants
+  require Logger
   @config Application.get_env(:friday_front, :github)
 
   def issues(repository) do
-    HTTPoison.get!(@config[:base_url] <> "/repos/#{repository}/issues").body
+    url = @config[:base_url] <> "/repos/#{repository}/issues"
+    Logger.info("access to #{url}")
+    HTTPoison.get!(url).body
     |> Poison.decode!
     |> Enum.map(&parse_response(&1, Constants.issues_fields))
   end

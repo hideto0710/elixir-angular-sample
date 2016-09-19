@@ -14,6 +14,7 @@ defmodule FridayFront do
       supervisor(FridayFront.Endpoint, []),
       # Start your own worker by calling: FridayFront.Worker.start_link(arg1, arg2, arg3)
       # worker(FridayFront.Worker, [arg1, arg2, arg3]),
+      supervisor(FridayFront.IssueTracker, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

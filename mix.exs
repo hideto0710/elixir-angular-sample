@@ -19,7 +19,7 @@ defmodule FridayFront.Mixfile do
   def application do
     [mod: {FridayFront, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison]]
+                    :phoenix_ecto, :postgrex, :httpoison, :gproc]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +39,7 @@ defmodule FridayFront.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:httpoison, "~> 0.9.0"},
+     {:gproc, "~> 0.5.0"},
      {:jsex, "~> 2.0"},
      {:inflex, "~> 1.7.0"}]
   end

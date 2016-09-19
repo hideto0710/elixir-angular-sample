@@ -4,7 +4,6 @@ defmodule FridayFront.IssueTracker.Supurvisor do
 
   def start_link(stash_pid) do
     Supervisor.start_link(__MODULE__, stash_pid, name: __MODULE__)
-    Agent.start_link(fn -> %{} end, name: :workers)
   end
 
   def init(stash_pid) do
@@ -15,19 +14,8 @@ defmodule FridayFront.IssueTracker.Supurvisor do
     supervise(children, options)
   end
 
-  def start_worker(key) do
-    worker = get_worker(key)
-    if is_nil(worker) do
-      result = {:ok, pid} = Supervisor.start_child(__MODULE__, [])
-      Agent.update(:workers, &Map.put(&1, key, pid))
-      result
-    else
-      {:ok, worker}
-    end
-  end
-
-  def get_worker(key) do
-    Agent.get(:workers, &Map.get(&1, key))
+  def start_worker(repository) do
+    Supervisor.start_child(__MODULE__, [repository])
   end
 
   def count_workers do

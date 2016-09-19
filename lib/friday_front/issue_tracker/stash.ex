@@ -14,7 +14,7 @@ defmodule FridayFront.IssueTracker.Stash do
   end
 
   def handle_call({:get_value, key}, _from, map) do
-    {:reply, Map.get(map, key, 0), map}
+    {:reply, Map.get(map, key, []), map}
   end
 
   def handle_cast({:save_value, key, value}, map) do

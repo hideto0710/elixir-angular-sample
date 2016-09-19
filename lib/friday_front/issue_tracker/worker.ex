@@ -7,8 +7,8 @@ defmodule FridayFront.IssueTracker.Worker do
     GenServer.start_link(__MODULE__, [stash_pid, repository], name: via_tuple(repository))
   end
 
-  def next_number(repository) do
-    GenServer.call(via_tuple(repository), :next_number)
+  def issues(repository) do
+    GenServer.call(via_tuple(repository), :issues)
   end
 
   def crash(repository) do
@@ -16,20 +16,25 @@ defmodule FridayFront.IssueTracker.Worker do
   end
 
   def init([stash_pid, repository]) do
-    current_number = IssueTracker.Stash.get_value(stash_pid, repository)
-    {:ok, {current_number, stash_pid, repository}}
+    case IssueTracker.Stash.get_value(stash_pid, repository) do
+      [] ->
+        issues = FridayFront.Github.issues(repository)
+        {:ok, {issues, stash_pid, repository}}
+      issues ->
+        {:ok, {issues, stash_pid, repository}}
+    end
   end
 
-  def handle_call(:next_number, _from, {current_number, stash_pid, repository}) do
-    {:reply, current_number, {current_number+1, stash_pid, repository}}
+  def handle_call(:issues, _from, {issues, _, _} = state) do
+    {:reply, issues, state}
   end
 
   def handle_cast(:crash, {}) do
     raise "crash!"
   end
 
-  def terminate(_reason, {current_number, stash_pid, repository}) do
-    IssueTracker.Stash.save_value(stash_pid, repository, current_number)
+  def terminate(_reason, {issues, stash_pid, repository}) do
+    IssueTracker.Stash.save_value(stash_pid, repository, issues)
   end
 
   defp via_tuple(repository) do
